@@ -6,7 +6,7 @@
     "publisher": "pastezen",
     "repository": {
         "type": "git",
-        "url": "https://github.com/pastezen/vscode-extension"
+        "url": "https://github.com/Pastezen/pz-vscode"
     },
     "engines": {
         "vscode": "^1.75.0"
@@ -128,12 +128,12 @@
                 },
                 "pastezen.apiUrl": {
                     "type": "string",
-                    "default": "http://localhost:5002",
+                    "default": "https://backend.pastezen.com",
                     "description": "Pastezen API URL"
                 },
                 "pastezen.webUrl": {
                     "type": "string",
-                    "default": "http://localhost:3000",
+                    "default": "https://pastezen.com",
                     "description": "Pastezen web URL"
                 },
                 "pastezen.defaultVisibility": {
