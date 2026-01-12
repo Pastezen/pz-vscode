@@ -1,0 +1,171 @@
+{
+    "name": "pastezen",
+    "displayName": "Pastezen",
+    "description": "Create and manage code pastes directly from VS Code",
+    "version": "1.1.1",
+    "publisher": "pastezen",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/pastezen/vscode-extension"
+    },
+    "engines": {
+        "vscode": "^1.75.0"
+    },
+    "icon": "resources/icon.png",
+    "categories": [
+        "Other",
+        "Snippets"
+    ],
+    "keywords": [
+        "paste",
+        "pastebin",
+        "code sharing",
+        "snippet"
+    ],
+    "activationEvents": [
+        "*"
+    ],
+    "main": "./out/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "pastezen.createPasteFromSelection",
+                "title": "Pastezen: Create Paste from Selection"
+            },
+            {
+                "command": "pastezen.createPasteFromFile",
+                "title": "Pastezen: Create Paste from File"
+            },
+            {
+                "command": "pastezen.refreshPastes",
+                "title": "Pastezen: Refresh Pastes",
+                "icon": "$(refresh)"
+            },
+            {
+                "command": "pastezen.openPaste",
+                "title": "Pastezen: Open Paste"
+            },
+            {
+                "command": "pastezen.deletePaste",
+                "title": "Pastezen: Delete Paste",
+                "icon": "$(trash)"
+            },
+            {
+                "command": "pastezen.copyPasteUrl",
+                "title": "Pastezen: Copy Paste URL",
+                "icon": "$(link)"
+            },
+            {
+                "command": "pastezen.setApiToken",
+                "title": "Pastezen: Set API Token"
+            },
+            {
+                "command": "pastezen.saveToPastezen",
+                "title": "Pastezen: Save to Paste",
+                "icon": "$(cloud-upload)"
+            }
+        ],
+        "menus": {
+            "editor/context": [
+                {
+                    "when": "editorHasSelection",
+                    "command": "pastezen.createPasteFromSelection",
+                    "group": "pastezen@1"
+                },
+                {
+                    "command": "pastezen.createPasteFromFile",
+                    "group": "pastezen@2"
+                }
+            ],
+            "view/title": [
+                {
+                    "command": "pastezen.refreshPastes",
+                    "when": "view == pastezenPastes",
+                    "group": "navigation"
+                }
+            ],
+            "view/item/context": [
+                {
+                    "command": "pastezen.copyPasteUrl",
+                    "when": "view == pastezenPastes",
+                    "group": "inline"
+                },
+                {
+                    "command": "pastezen.deletePaste",
+                    "when": "view == pastezenPastes",
+                    "group": "inline"
+                },
+                {
+                    "command": "pastezen.openPaste",
+                    "when": "view == pastezenPastes"
+                }
+            ]
+        },
+        "viewsContainers": {
+            "activitybar": [
+                {
+                    "id": "pastezen",
+                    "title": "Pastezen",
+                    "icon": "resources/icon.svg"
+                }
+            ]
+        },
+        "views": {
+            "pastezen": [
+                {
+                    "id": "pastezenPastes",
+                    "name": "My Pastes"
+                }
+            ]
+        },
+        "configuration": {
+            "title": "Pastezen",
+            "properties": {
+                "pastezen.apiToken": {
+                    "type": "string",
+                    "default": "",
+                    "description": "Your Pastezen API token"
+                },
+                "pastezen.apiUrl": {
+                    "type": "string",
+                    "default": "http://localhost:5002",
+                    "description": "Pastezen API URL"
+                },
+                "pastezen.webUrl": {
+                    "type": "string",
+                    "default": "http://localhost:3000",
+                    "description": "Pastezen web URL"
+                },
+                "pastezen.defaultVisibility": {
+                    "type": "string",
+                    "enum": [
+                        "public",
+                        "private"
+                    ],
+                    "default": "public",
+                    "description": "Default paste visibility"
+                }
+            }
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "pretest": "npm run compile",
+        "lint": "eslint src --ext ts",
+        "package": "vsce package"
+    },
+    "devDependencies": {
+        "@types/node": "^18.0.0",
+        "@types/vscode": "^1.75.0",
+        "@typescript-eslint/eslint-plugin": "^5.0.0",
+        "@typescript-eslint/parser": "^5.0.0",
+        "eslint": "^8.0.0",
+        "typescript": "^4.9.0",
+        "vsce": "^2.15.0"
+    },
+    "dependencies": {
+        "axios": "^1.6.0"
+    }
+}
