@@ -4,6 +4,7 @@
     "description": "Create and manage code pastes directly from VS Code",
     "version": "1.1.1",
     "publisher": "pastezen",
+    "license": "MIT",
     "repository": {
         "type": "git",
         "url": "https://github.com/Pastezen/pz-vscode"
